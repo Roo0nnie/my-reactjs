@@ -12,3 +12,15 @@ ul li {
   list-style: none;
   display: inline-block;
 }
+
+.Tic-box {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border: 2px solid black;
+  text-align: center;
+  line-height: normal;
+  vertical-align: bottom;
+  font-size: 20px;
+}
