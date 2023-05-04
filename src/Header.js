@@ -1,14 +1,26 @@
+import { Link } from "react-router-dom";
 
+const menus = [{label:"Home", path:'/'},
+                {label:"About", path:'/About-us'},
+                {label:"Contact Us", path:'/ContactUs'},
+                {label:"Login",path:'/Login'},
+                {label:"Settings", path:'/Settings'}];
 
-const Header = ({menuList}) => {
+function Header({menuList}){
     return (
         <>
-        <div className="header">
-            <h3>Navigation Bar</h3>
-            <h6 className="inline-block">{menuList.map((item) => <li>{item}</li>)}</h6>
-        </div>
+            <div className="header">
+                <div className="app-header-logo"><img src="logo192.png"/></div>
+                <nav>
+                    <ul className="main-menu">
+                        {menus.map((item)=><li>
+                            <Link to={item.path}>{item.label}</Link>
+                        </li>)}
+                    </ul>
+                </nav>
+            </div>
         </>
-    )
+    );
 }
 
 export default Header;

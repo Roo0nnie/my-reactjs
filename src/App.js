@@ -1,40 +1,30 @@
-/*import logo from './logo.svg';*/
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import './App.css';
-import Footer from './Footer';
-import Header from './Header';
-import MainContent from './MainContent';
-import StudentInfo from './StudentInfo';
-
-const menu = ['Home', 'About','Blog','Contact'];
-const listStudent = {ron:"Ronnie", lyn:"Roselyn", kris:"Kristoffer", gela:"Angela"};
-
-const listStudents = [
-  {ron:"Ronnie", lyn:"Roselyn", kris:"Kristoffer", gela:"Angela"},
-  {ron:"Ronnie", lyn:"Roselyn", kris:"Kristoffer", gela:"Angela"},
-  {ron:"Ronnie", lyn:"Roselyn", kris:"Kristoffer", gela:"Angela"},
-  {ron:"Ronnie", lyn:"Roselyn", kris:"Kristoffer", gela:"Angela"}
-];
-
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Home from './Home';
+import Layout from './Layout';
+import AboutUs from './AboutUs';
+import ContactUs from './ContactUs';
+import Login from './Login';
+import Error404 from './Error404';
+import Setting from './Setting';
 
 function App() {
   return (
-    <div className="App">
-        <Header menuList={menu}/>
-        <MainContent/>
-        <div>
-          <button className='btn btn-primary'>Click</button>
-          <button className='btn btn-primary'>Test</button>
-        </div>
-        <StudentInfo data={listStudent} title="Details"/>
-        <div className="row">
-          {listStudents.map((studentData) => <StudentInfo data={studentData}/>)}
-        </div>
-        
-
-        <Footer/>
-        
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}/>
+          <Route path="login" element={<Login />}/>
+          <Route path="about-us" element={<AboutUs />}/>
+          <Route path="contact-us" element={<ContactUs />}/>
+          <Route path="settings" element={<Setting />}/>
+          <Route path="*" element={<Error404 />}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 
