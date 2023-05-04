@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from "react";
 import StudentInfo from "./StudentInfo";
 import ApiService from "./ApiService";
@@ -24,7 +23,7 @@ function StudentList(){
         getStudetList();
     },[]);
 
-    const [keyword, setKeyword] = useState('');
+    const [keyword, setKeyword] = useState();
     const onKeywordChangeHandler = (e) =>{
         setKeyword(e.target.value);
         ApiService('/students/name/' + e.target.value, null, (data)=>{
@@ -33,17 +32,11 @@ function StudentList(){
     }
 
     const [studentDetails, setStudentDetails] = useState({});
-/*
+
     const onEditHandler = (data) =>{
         ApiService('/students/' + data.id, null, (data)=>{
             setStudentDetails(data);
         });
-    }
-
-    */
-
-    const onEditHandler = (data) => {
-        setStudentDetails(data);
     }
 
     const onStudentSaveHandler = (formData) =>{
@@ -75,13 +68,7 @@ function StudentList(){
         setConfirmOpen(false);
     }
 
-const [studentDetails, setStudentDetails] = useState({});
-
-useEffect(() => {
-
-},[studentDetails]);
-
-return (
+    return (
         <>
             <h3>Student List ({count})</h3>
             <button className="btn btn-primary" onClick={onClickAddHandler} data-bs-toggle="modal" data-bs-target="#myPopupWin">Add Student</button>
@@ -105,7 +92,7 @@ return (
                         </div>
 
                         <div className="modal-body">
-                            <StudentInfoEdit data={studentDetails}/>
+                            <StudentInfoEdit data={studentDetails} onSaveHandler={onStudentSaveHandler}/>
                         </div>
                     </div>
                 </div>
